@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
         origin: process.env.NODE_ENV === 'production' 
-            ? [""] 
+            ? ["https://mini-chat-app-e6mv.onrender.com"] 
             : ["http://localhost:3000"],
         methods: ["GET", "POST"],
         credentials: true
