@@ -5,9 +5,22 @@ const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+
+// Configure Socket.IO for production
+const io = socketIo(server, {
+    cors: {
+        origin: process.env.NODE_ENV === 'production' 
+            ? [""] 
+            : ["http://localhost:3000"],
+        methods: ["GET", "POST"],
+        credentials: true
+    },
+    transports: ['websocket', 'polling']
+});
 
 const PORT = process.env.PORT || 3000;
+
+// Rest of your server code remains the same...
 
 // Store room users - in production, use Redis or database
 const roomUsers = new Map();
