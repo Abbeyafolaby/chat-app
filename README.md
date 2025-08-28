@@ -8,20 +8,14 @@ Simple Chat App is a real-time messaging application that allows users to commun
 
 ## Features
 
-- **Real-time Messaging**
-  - Instant message delivery using WebSockets
-  - Real-time message synchronization across devices
-  - Message status indicators (sent, delivered, read)
+### Core Chat Features
 
-- **User Experience**
-  - User authentication and profiles
-
-- **Technical Features**
-  - Socket.IO for real-time communication
-  - Connection state management
-  - Auto-reconnection on network issues
-  - Message queuing for offline users
-  - Scalable architecture
+- Real-time Messaging: Instant message delivery using WebSockets
+- Room-Based Chat: Multiple chat rooms (General, Sports, Tech, Music, Gaming)
+- User Management: Username system with user lists per room
+- Typing Indicators: See when other users are typing
+- Connection Status: Real-time connection status monitoring
+- Auto-Reconnection: Automatic reconnection on network issues
 
 ## Installation & Usage
 
@@ -58,35 +52,42 @@ Simple Chat App is a real-time messaging application that allows users to commun
 5. Open your browser and navigate to `http://localhost:3000`
 
 ### Usage
-1. **Register/Login**: Create an account or login to start chatting
-2. **Join Rooms**: Enter existing chat rooms or create new ones
-3. **Start Chatting**: Send messages, share files, and interact with other users
+1. **Add Username**: input your desired username 
+2. **Join Rooms**: Enter existing chat rooms 
+3. **Start Chatting**: Send messages and interact with other users in the chat room
 
 ## Technologies Used
 
 - **Backend**: Node.js with Express.js
 - **Real-time Communication**: Socket.IO
-- **Database**: MongoDB with Mongoose
-- **Authentication**: JWT with bcrypt
-- **File Upload**: Multer
-- **Testing**: Jest, Socket.IO Client for testing
 
 ## API Endpoints
 
-**Authentication**
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - User login
-- `POST /api/auth/logout` - User logout
+**HTTP Routes**
 
-**Chat**
-- `GET /api/rooms` - Get available chat rooms
-- `POST /api/rooms` - Create new chat room
-- `GET /api/rooms/:id/messages` - Get room message history
-- `POST /api/upload` - Upload file/image
+- `GET /` - Serve main chat application
 
-**Users**
-- `GET /api/users/profile` - Get user profile
-- `PUT /api/users/profile` - Update user profile
+- `GET /api/rooms` - Get available rooms with user counts
+
+## Socket.IO Events
+**Client to Server**
+
+- `join room` - Join a specific chat room
+- `chat message` - Send message to current room
+- `typing` - Send typing indicator status
+- `get rooms` - Request list of available rooms
+
+### Server to Client
+
+- `available rooms` - List of available room names
+- `rooms list` - Rooms with user counts
+- `joined room` - Confirmation of room join
+- `chat message` - Receive message from room
+- `user joined` - User joined current room notification
+- `user left` - User left current room notification
+- `room users` - Updated list of users in current room
+- `typing` - Typing indicator from other users
+- `error` - Error messages
 
 
 ## Author

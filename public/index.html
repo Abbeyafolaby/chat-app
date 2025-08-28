@@ -4,27 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/styles.css">
-    <title>Real-Time Chat App</title>
+    <title>Room-Based Chat App</title>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h1>Real-Time Chat</h1>
-            <div class="online-status">Connected and ready to chat!</div>
+    <!-- Room Selection Screen -->
+    <div class="room-selection" id="roomSelection">
+        <div class="room-selection-container">
+            <div class="room-header">
+                <h1>🚀 Join a Chat Room</h1>
+                <p>Choose a room to start chatting with others!</p>
+            </div>
+            
+            <div class="username-setup">
+                <label for="usernameSetup">Your Name:</label>
+                <input type="text" id="usernameSetup" class="username-setup-input" 
+                    placeholder="Enter your name" maxlength="20" required>
+            </div>
+            
+            <div class="room-list">
+                <h3>Available Rooms:</h3>
+                <div class="rooms-grid" id="roomsGrid">
+                    <!-- Rooms will be populated here -->
+                </div>
+            </div>
+            
+            <div class="join-section">
+                <button id="joinRoomBtn" class="join-room-btn" disabled>
+                    Join Selected Room
+                </button>
+            </div>
         </div>
-        
-        <div class="username-section">
-            <input type="text" id="usernameInput" class="username-input" placeholder="Enter your name (optional)" maxlength="20">
-        </div>
-        
-        <div class="messages" id="messages"></div>
-        
-        <div class="typing-indicator" id="typingIndicator"></div>
-        
-        <div class="input-section">
-            <div class="input-container">
-                <input type="text" id="messageInput" class="message-input" placeholder="Type your message..." maxlength="500">
-                <button id="sendButton" class="send-button">Send</button>
+    </div>
+
+    <!-- Main Chat Interface -->
+    <div class="chat-app" id="chatApp" style="display: none;">
+        <div class="chat-layout">
+            <!-- Sidebar with Users -->
+            <div class="sidebar">
+                <div class="room-info">
+                    <h3 id="currentRoom">Room Name</h3>
+                    <button id="leaveRoomBtn" class="leave-room-btn">Leave Room</button>
+                </div>
+                
+                <div class="users-section">
+                    <h4>👥 Online Users (<span id="userCount">0</span>)</h4>
+                    <div class="users-list" id="usersList">
+                        <!-- Users will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Chat Area -->
+            <div class="chat-main">
+                <div class="chat-header">
+                    <div class="chat-title">
+                        <h2>💬 Chat Room</h2>
+                        <span class="connection-status" id="connectionStatus">Connected</span>
+                    </div>
+                    <div class="user-info">
+                        Welcome, <span id="currentUsername">User</span>!
+                    </div>
+                </div>
+                
+                <div class="messages" id="messages"></div>
+                
+                <div class="typing-indicator" id="typingIndicator"></div>
+                
+                <div class="input-section">
+                    <div class="input-container">
+                        <input type="text" id="messageInput" class="message-input" 
+                            placeholder="Type your message..." maxlength="500">
+                        <button id="sendButton" class="send-button">
+                            <span>📤</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
